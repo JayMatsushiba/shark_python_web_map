@@ -2,11 +2,17 @@
 
 from flask import Flask, render_template, request
 
-app = Flask(__name__)
+def create_app():
+    app = Flask(__name__)
+    return app
+
+app = create_app()
 
 
 @app.route("/")
 def index():
-    name = request.args.get("name", "world")
-    return render_template("index.html", name=name)
+    return render_template("index.html")
 
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", debug=True, port=5000, threaded=True)
